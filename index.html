@@ -1,40 +1,45 @@
 <!doctype html>
 <html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Login form</title>
-    <meta name="description" content="Login form">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="apple-touch-icon" href="icon.png">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/styles.css">
-  </head>
-  <body>
-    <!--[if lte IE 9]>
-    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-    <![endif]-->
-    <section class="login-form">
-      <span class="login-form__back-btn">
-        <img src="/img/arrow-left.png">
-        Вернуться
-      </span>
-      <img src="/img/rabbit.png" class="login-form__logo">
-      <form method="POST" action="handleData.php">
-        <div class="login-form__control-group">
-          <input type="tel" placeholder="8 (888) 888-88-88" class="login-form__phone" name="phone" id="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" required/>
-          <input type="password" placeholder="Введите пароль" class="login-form__password" name="pass" id="pass" required>
-        </div>
-        <div class="login-form__control-group">
-          <label for="remember">
-          <input type="checkbox" class="login-form__remember-me" name="remember" id="remember">
-          Запонить</label>
-          <a href="forget.html">Забыл пароль</a>
-        </div>
-        <input type="submit" class="login-form__submit" name="submit" value="Войти">
-      </form>
-    </section>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/main.js"></script>
-  </body>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Login form</title>
+        <meta name="description" content="Login form">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="apple-touch-icon" href="icon.png">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/styles.css">
+    </head>
+    <body>
+        <!--[if lte IE 9]>
+        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+        <section class="login-form" id="app">
+            <span class="login-form__back-btn">
+                <img src="/img/arrow-left.png">
+                Вернуться
+            </span>
+            <img src="/img/rabbit.png" class="login-form__logo">
+            <form method="POST" action="handleData.php" id="login-form" @submit.prevent="submitForm">
+                <div class="login-form__control-group">
+                    <input type="tel" placeholder="Введите номер телефона" class="login-form__phone"
+                    :class="{  'login-form__phone--valid': isValidPhone, 'login-form__phone--invalid': !isValidPhone && isValidPhone !== undefined }"
+                    name="phone"
+                    v-model="phone"
+                    id="phone"
+                    required/>
+                    <input type="password" placeholder="Введите пароль" class="login-form__password" name="pass" id="pass" v-model="pass" required>
+                </div>
+                <div class="login-form__control-group">
+                    <input type="checkbox" class="login-form__remember-me" name="remember" id="remember" />
+                    <label for="remember">Запомнить</label>
+                    <a href="forget.html">Забыл пароль</a>
+                </div>
+                <input type="submit" class="login-form__submit" name="submit" value="Войти" :disabled="!isValidForm">
+            </form>
+        </section>
+        <script src="js/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
+        <script src="js/main.js"></script>
+    </body>
 </html>
