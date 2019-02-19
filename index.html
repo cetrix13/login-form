@@ -14,21 +14,22 @@
         <!--[if lte IE 9]>
         <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
-        <section class="login-form" id="app">
+        <div class="login-form" id="app">
             <span class="login-form__back-btn">
-                <img src="/img/arrow-left.png">
-                Вернуться
+                <img src="/img/arrow-left.png" alt="arrow to the left">
+                <a href="#">Вернуться</a>
             </span>
-            <img src="/img/rabbit.png" class="login-form__logo">
+            <img src="/img/rabbit.png" class="login-form__logo" alt="rabbit logo">
             <form method="POST" action="handleData.php" id="login-form" @submit.prevent="submitForm">
                 <div class="login-form__control-group">
-                    <input type="tel" placeholder="Введите номер телефона" class="login-form__phone"
+                    <input type="tel" placeholder="Введите номер телефона" class="login-form__phone" maxlength="18"
                     :class="{  'login-form__phone--valid': isValidPhone, 'login-form__phone--invalid': !isValidPhone && isValidPhone !== undefined }"
                     name="phone"
                     v-model="phone"
                     id="phone"
-                    required/>
-                    <input type="password" placeholder="Введите пароль" class="login-form__password" name="pass" id="pass" v-model="pass" required>
+                    required
+                    />
+                    <input type="password" maxlength="18" placeholder="Введите пароль" class="login-form__password" name="pass" id="pass" v-model="pass" required>
                 </div>
                 <div class="login-form__control-group">
                     <input type="checkbox" class="login-form__remember-me" name="remember" id="remember" />
@@ -37,7 +38,7 @@
                 </div>
                 <input type="submit" class="login-form__submit" name="submit" value="Войти" :disabled="!isValidForm">
             </form>
-        </section>
+        </div>
         <script src="js/jquery.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/vue@2.5.22/dist/vue.js"></script>
         <script src="js/main.js"></script>
