@@ -1,28 +1,29 @@
+// General
 html, body
     height: 100%
 
 body
     color: #fff
-    background: url('/img/bg.jpg') no-repeat center center fixed
-    -webkit-background-size: cover
-    -moz-background-size: cover
-    -o-background-size: cover
+    background: url('/img/bg.jpg') no-repeat center center
     background-size: cover
+    font-family: 'Helvetica Neue', sans-serif
     display: flex
     justify-content: center
     align-items: center
 
+a, a:visited, a:hover
+    color: rgba(216,216,216, 1)
+    text-decoration: underline
+
+// Login form and its components
 .login-form
     display: flex
+    flex-direction: column
     justify-content: center
     align-items: center
-    flex-direction: column
-    background: url('/img/form-bg.png') no-repeat center center fixed
-    -webkit-background-size: cover
-    -moz-background-size: cover
-    -o-background-size: cover
+    background: url('/img/form-bg.png') no-repeat center center
     background-size: cover
-    width: 50%
+    width: 40%
     padding: 1.5rem
     form
         display: flex
@@ -33,18 +34,47 @@ body
 
 .login-form__back-btn
     align-self: flex-start
+    a
+        color: rgba(216,216,216, .8)
+        font-size: 10px
+        text-transform: uppercase
+        text-decoration: none
 
 .login-form__control-group
     align-self: normal
-    a
+    font-size: 16px
+    color: rgba(216,216,216, 1)
+    margin-bottom: .5rem
+    a, a:visited
         float: right
+        color: rgba(216,216,216, 1)
+    span
+        color: rgba(216,216,216, 1)
 
 .login-form__submit
     padding: .8rem
+    font-size: 12px
     background: transparent
     color: #fff
     border-radius: 30px
+    cursor: pointer
+    margin-top: 1rem
     width: 40%
+    text-transform: uppercase
+    &:hover:enabled
+        background: #fff
+        color: #000
+    &:disabled
+        color: #D8D8D8
+        border-color: rgba(255,255,255, .3)
+        cursor: unset
+
+.login-form__phone:focus, .login-form__password:focus
+    background-color: #fff
+    color: #000
+    outline: none
+    &.login-form__phone--invalid
+        color: #B40000
 
 .login-form__phone, .login-form__password
     display: block
@@ -52,19 +82,57 @@ body
     color: #fff
     width: 100%
     margin-bottom: .5rem
-    padding: .5rem
+    padding: .8rem
     background: transparent
-    border: 1px solid #fff
-    border-radius: 15px
-    &::focus
-         outline:none
+    border: 1px solid rgba(255, 255, 255, .2);
+    border-radius: 25px
 
 .login-form__phone::placeholder, .login-form__password::placeholder
     color: #fff
 
+.login-form__phone--valid
+    background: url('/img/check-mark.png') no-repeat 95% center
+
+.login-form__phone--invalid
+    background: url('/img/error-mark.png') no-repeat 95% center
+    color: #B40000
+
 .login-form__logo
     margin-bottom: 1rem
 
+.login-form__remember-me
+    display: none
 
+.login-form__remember-me + label
+    background:url('/img/check-off.png') no-repeat
+    background-position: left center
+    background-size: auto 100%
+    width: 44px
+    height: 24px
+    display: inline
+    padding-left: 2.4rem
+    cursor: pointer
 
+.login-form__remember-me:checked + label
+    background:url('/img/check-on.png') no-repeat
+    background-position: left center
+    background-size: auto 100%
+    width: 44px
+    height: 24px
+    display: inline
+    padding-left: 2.4rem
 
+// Tablets and notebooks
+@media screen and (min-width: 768px) and (max-width: 1136px)
+    .login-form form
+        width: 90%
+
+// Mobile phones
+@media screen and (max-width: 768px)
+    .login-form__back-btn
+        margin-bottom: .5rem
+
+    .login-form
+        width: 100%
+        form
+            width: 90%
