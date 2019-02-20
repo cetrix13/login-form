@@ -20,20 +20,28 @@
                 <a href="#">Вернуться</a>
             </span>
             <img src="/img/rabbit.png" class="login-form__logo" alt="rabbit logo">
-            <form method="POST" action="handleData.php" id="login-form" @submit.prevent="submitForm">
+            <form method="POST" action="/server/handleData.php" id="login-form" @submit.prevent="submitForm">
                 <div class="login-form__control-group">
-                    <input type="tel" placeholder="Введите номер телефона" class="login-form__phone" maxlength="18"
+                    <input type="tel" maxlength="18" placeholder="Телефон # (###) ###-##-##" name="phone"
+                    class="login-form__phone"
                     :class="{  'login-form__phone--valid': isValidPhone, 'login-form__phone--invalid': !isValidPhone && isValidPhone !== undefined }"
                     v-model="phone"
                     id="phone"
+                    title="Телефон формата # (###) ##-##-##"
+                    pattern="[0-9]{1} \([0-9]{3}\) [0-9]{2}-[0-9]{2}-[0-9]{2}"
                     required
                     />
-                    <input type="password" maxlength="18" placeholder="Введите пароль" class="login-form__password" id="pass" v-model="pass" required>
+                    <input type="password" maxlength="18" minlength="5" placeholder="Введите пароль" name="pass"
+                    class="login-form__password" id="pass"
+                    v-model="pass"
+                    title="Длинна пароля должна быть минимум 5 символов"
+                    required
+                    />
                 </div>
                 <div class="login-form__control-group">
                     <input type="checkbox" class="login-form__remember-me" name="remember" v-model="remember" id="remember" />
                     <label for="remember">Запомнить</label>
-                    <a href="forget.html">Забыл пароль</a>
+                    <a href="/server/forget.html">Забыл пароль</a>
                 </div>
                 <input type="submit" class="login-form__submit" name="submit" value="Войти" :disabled="!isValidForm">
             </form>
