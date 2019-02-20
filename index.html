@@ -24,15 +24,14 @@
                 <div class="login-form__control-group">
                     <input type="tel" placeholder="Введите номер телефона" class="login-form__phone" maxlength="18"
                     :class="{  'login-form__phone--valid': isValidPhone, 'login-form__phone--invalid': !isValidPhone && isValidPhone !== undefined }"
-                    name="phone"
                     v-model="phone"
                     id="phone"
                     required
                     />
-                    <input type="password" maxlength="18" placeholder="Введите пароль" class="login-form__password" name="pass" id="pass" v-model="pass" required>
+                    <input type="password" maxlength="18" placeholder="Введите пароль" class="login-form__password" id="pass" v-model="pass" required>
                 </div>
                 <div class="login-form__control-group">
-                    <input type="checkbox" class="login-form__remember-me" name="remember" id="remember" />
+                    <input type="checkbox" class="login-form__remember-me" name="remember" v-model="remember" id="remember" />
                     <label for="remember">Запомнить</label>
                     <a href="forget.html">Забыл пароль</a>
                 </div>

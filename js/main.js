@@ -3,27 +3,30 @@ new Vue({
     data: {
         pass: '',
         phone: '',
+        remember: false,
     },
     methods: {
         submitForm: function(event) {
             $.ajax({
                 url: event.target.action,
                 method: 'GET',
-                data: { phone: this.phone, pass: this.pass },
+                data: { phone: this.phone, pass: this.pass, remember: this.remember },
                 success: function() {
-                    // TODO: Add proper handlers
+                    // TODO: Add proper handler
                     alert('All good and data send');
                 },
                 error: function() {
-                    // TODL: Add proper handlers
+                    // TODO: Add proper handler
                     alert('Error occuried');
                 },
                 complete: function() {
                     event.target.reset();
                 }
             });
+            // reset to initial state
             this.phone = '';
             this.pass = '';
+            this.remember = false;
         }
 
     },
