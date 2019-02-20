@@ -1,6 +1,8 @@
 let gulp = require("gulp");
 let sass = require("gulp-sass");
 let autoprefixer = require("gulp-autoprefixer");
+let uglify = require('gulp-uglify');
+let concat = require('gulp-concat');
 
 
 function styles() {
@@ -17,8 +19,18 @@ function styles() {
     );
 }
 
-function watch(){
-    gulp.watch('sass/*.sass', styles)
+function js() {
+    return (
+        gulp.src('js/*.js')
+        .pipe(uglify())
+        .pipe(concat('all.min.js'))
+        .pipe(gulp.dest("js/prod/"))
+    );
 }
 
-exports.watch = watch
+function watch(){
+    gulp.watch('sass/*.sass', styles);
+    gulp.watch('js/*.js', js);
+}
+
+exports.watch = watch;
