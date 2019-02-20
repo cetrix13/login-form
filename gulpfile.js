@@ -4,9 +4,9 @@ let minifyCSS = require('gulp-minify-css');
 let autoprefixer = require("gulp-autoprefixer");
 let uglify = require('gulp-uglify');
 let concat = require('gulp-concat');
-var merge = require('merge-stream');
+let merge = require('merge-stream');
 
-
+// Add prefixes, concatinate and minify CSS
 function styles() {
     let sassStream = gulp
             .src("sass/*.sass")
@@ -23,11 +23,12 @@ function styles() {
     let mergedStream = merge(sassStream, cssStream)
         .pipe(concat('styles.min.css'))
         .pipe(minifyCSS())
-        .pipe(gulp.dest("css/prod/"))
+        .pipe(gulp.dest("css/prod/"));
 
     return mergedStream;
 }
 
+// Concatinate and minify JS
 function js() {
     return (
         gulp.src('js/*.js')
