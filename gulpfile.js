@@ -1,22 +1,31 @@
 let gulp = require("gulp");
 let sass = require("gulp-sass");
+let minifyCSS = require('gulp-minify-css');
 let autoprefixer = require("gulp-autoprefixer");
 let uglify = require('gulp-uglify');
 let concat = require('gulp-concat');
+var merge = require('merge-stream');
 
 
 function styles() {
-    return (
-        gulp
+    let sassStream = gulp
             .src("sass/*.sass")
             .pipe(sass({ outputStyle: "compressed" }))
             .on("error", sass.logError)
             .pipe(autoprefixer({
                 browsers: ['last 2 versions'],
                 cascade: false
-            }))
-            .pipe(gulp.dest("css"))
-    );
+            }));
+    let cssStream = gulp
+            .src('css/*.css')
+            .pipe(concat('styles.css'));
+
+    let mergedStream = merge(sassStream, cssStream)
+        .pipe(concat('styles.min.css'))
+        .pipe(minifyCSS())
+        .pipe(gulp.dest("css/prod/"))
+
+    return mergedStream;
 }
 
 function js() {

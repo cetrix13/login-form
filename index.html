@@ -7,8 +7,7 @@
         <meta name="description" content="Login form">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="apple-touch-icon" href="icon.png">
-        <link rel="stylesheet" href="css/normalize.css">
-        <link rel="stylesheet" href="css/styles.css">
+        <link rel="stylesheet" href="css/prod/styles.min.css">
     </head>
     <body>
         <!--[if lte IE 9]>
@@ -41,7 +40,7 @@
                 <div class="login-form__control-group">
                     <input type="checkbox" class="login-form__remember-me" name="remember" v-model="remember" id="remember" />
                     <label for="remember">Запомнить</label>
-                    <a href="/server/forget.html">Забыл пароль</a>
+                    <a href="server/forget.html">Забыл пароль</a>
                 </div>
                 <input type="submit" class="login-form__submit" name="submit" value="Войти" :disabled="!isValidForm">
             </form>
