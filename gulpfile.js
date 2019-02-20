@@ -1,5 +1,7 @@
 let gulp = require("gulp");
 let sass = require("gulp-sass");
+let autoprefixer = require("gulp-autoprefixer");
+
 
 function styles() {
     return (
@@ -7,6 +9,10 @@ function styles() {
             .src("sass/*.sass")
             .pipe(sass({ outputStyle: "compressed" }))
             .on("error", sass.logError)
+            .pipe(autoprefixer({
+                browsers: ['last 2 versions'],
+                cascade: false
+            }))
             .pipe(gulp.dest("css"))
     );
 }
