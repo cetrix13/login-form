@@ -9,7 +9,7 @@ new Vue({
         submitForm: function(event) {
             $.ajax({
                 url: event.target.action,
-                method: 'GET',
+                method: 'GET', // Should be 'POST' here, but we don't have server and will have an error
                 data: { phone: this.phone, pass: this.pass, remember: this.remember },
                 success: function() {
                     // TODO: Add proper handler
@@ -45,5 +45,13 @@ new Vue({
         isValidPass: function() {
             return this.pass.length > 5;
         }
+    },
+    mounted: function() {
+        var bluredImg = document.getElementsByClassName('blured-image')[0];
+        var formHeight = document.getElementById('app').offsetHeight;
+        var formWidth = document.getElementById('app').offsetWidth;
+        bluredImg.setAttribute('style',
+            'height:' + formHeight + 'px;' +
+            'width:' + formWidth + 'px;');
     },
 });
