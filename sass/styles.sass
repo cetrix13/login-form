@@ -21,8 +21,9 @@ a, a:visited, a:hover
     flex-direction: column
     justify-content: center
     align-items: center
-    background: url('/img/form-bg.png') no-repeat center center
-    background-size: cover
+    background: rgba(185, 139, 166, 0.25)
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25)
+    overflow: auto
     width: 40%
     padding: 1.5rem
     form
@@ -31,6 +32,15 @@ a, a:visited, a:hover
         align-items: center
         flex-direction: column
         width: 50%
+
+.blured-image
+    content: ""
+    position: fixed
+    z-index: -1
+    display: block
+    background: url('/img/bg.jpg') no-repeat center center
+    background-size:cover
+    filter: blur(6px)
 
 .login-form__back-btn
     align-self: flex-start
