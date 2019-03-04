@@ -1,14 +1,14 @@
-let gulp = require("gulp");
-let sass = require("gulp-sass");
-let minifyCSS = require('gulp-minify-css');
-let autoprefixer = require("gulp-autoprefixer");
-let uglify = require('gulp-uglify');
-let concat = require('gulp-concat');
-let merge = require('merge-stream');
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const minifyCSS = require('gulp-minify-css');
+const autoprefixer = require('gulp-autoprefixer');
+const uglify = require('gulp-uglify');
+const concat = require('gulp-concat');
+const merge = require('merge-stream');
 
 // Add prefixes, concatinate and minify CSS
 function styles() {
-    let sassStream = gulp
+    const sassStream = gulp
             .src("sass/*.sass")
             .pipe(sass({ outputStyle: "compressed" }))
             .on("error", sass.logError)
@@ -16,11 +16,11 @@ function styles() {
                 browsers: ['last 2 versions'],
                 cascade: false
             }));
-    let cssStream = gulp
+    const cssStream = gulp
             .src('css/*.css')
             .pipe(concat('styles.css'));
 
-    let mergedStream = merge(sassStream, cssStream)
+    const mergedStream = merge(sassStream, cssStream)
         .pipe(concat('styles.min.css'))
         .pipe(minifyCSS())
         .pipe(gulp.dest("css/prod/"));
@@ -39,6 +39,7 @@ function js() {
 }
 
 function watch(){
+    gulp.series(styles, js);
     gulp.watch('sass/*.sass', styles);
     gulp.watch('js/*.js', js);
 }
