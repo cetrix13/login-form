@@ -21,7 +21,7 @@ a, a:visited, a:hover
     flex-direction: column
     justify-content: center
     align-items: center
-    background: rgba(185, 139, 166, 0.25)
+    background: rgba(185, 139, 166, 0.20)
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.25)
     overflow: auto
     width: 40%
@@ -110,10 +110,10 @@ a, a:visited, a:hover
 .login-form__logo
     margin-bottom: 1rem
 
-.login-form__remember-me
+.login-form__remember-me-off, .login-form__remember-me-on
     display: none
 
-.login-form__remember-me + label
+.login-form__remember-me-off + label
     background:url('/img/check-off.png') no-repeat
     background-position: left center
     background-size: auto 100%
@@ -123,7 +123,7 @@ a, a:visited, a:hover
     padding-left: 2.4rem
     cursor: pointer
 
-.login-form__remember-me:checked + label
+.login-form__remember-me-on + label
     background:url('/img/check-on.png') no-repeat
     background-position: left center
     background-size: auto 100%

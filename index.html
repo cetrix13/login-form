@@ -39,7 +39,8 @@
                     />
                 </div>
                 <div class="login-form__control-group">
-                    <input type="checkbox" class="login-form__remember-me" name="remember" v-model="remember" id="remember" />
+                    <input type="checkbox" v-if="!remember" class="login-form__remember-me-off" name="remember" v-model="remember" id="remember" />
+                    <input type="checkbox" v-if="remember" class="login-form__remember-me-on" name="remember" v-model="remember" id="remember" />
                     <label for="remember">Запомнить</label>
                     <a href="server/forget.html">Забыл пароль</a>
                 </div>
